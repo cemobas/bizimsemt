@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Landon Hotel | Room View</title>
+    <link th:href="@{/css/site.css}" rel="stylesheet"/>
+</head>
+<body>
+<table class="table table-striped table-bordered">
+    <tr>
+        <td>id</td>
+        <td>
+            <span th:text="${client.id}"></span>
+        </td>
+    </tr>
+    <tr>
+        <td>name</td>
+        <td>
+            <span th:text="${client.name}"></span>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
