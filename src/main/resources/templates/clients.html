@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Landon Hotel | Room View</title>
-    <link th:href="@{/css/site.css}" rel="stylesheet"/>
+    <link href="../static/css/site.css" th:href="@{/css/site.css}" rel="stylesheet" />
+    <link href="../static/css/album.css" th:href="@{/css/album.css}" rel="stylesheet" />
 </head>
 <body>
+    <h1 class="jumbotron-heading">Search Client</h1>
     <!-- option th:each="i : ${#client.sequence(0, 100)}" th:value="${i.id}" th:text="${i.name}"-->
     <div class="form-group blu-margin">
         <form action="#" th:action="@{/clients/search}" th:object="${selectedClient}" method="post">

@@ -2,7 +2,7 @@ GET: $(document).ready(
 		function() {
 
 			// GET REQUEST
-			$("#getALlBooks").click(function(event) {
+			$("#getAllItems").click(function(event) {
 				event.preventDefault();
 				ajaxGet();
 			});
@@ -11,19 +11,14 @@ GET: $(document).ready(
 			function ajaxGet() {
 				$.ajax({
 					type : "GET",
-					url : "getBooks",
+					url : "getItems",
 					success : function(result) {
 						if (result.status == "success") {
 							$('#getResultDiv ul').empty();
-							var custList = "";
 							$.each(result.data,
-									function(i, book) {
-										var user = "Book Name  "
-												+ book.bookName
-												+ ", Author  = " + book.author
-												+ "<br>";
-										$('#getResultDiv .list-group').append(
-												user)
+									function(i, item) {
+										var newItem = item.amount+" "+item.unit+" "+item.name+"<br>";
+										$('#getResultDiv .list-group').append(newItem)
 									});
 							console.log("Success: ", result);
 						} else {

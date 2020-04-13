@@ -1,22 +1,22 @@
 package com.krakus.bizimsemt.domain;
 public class Item {
 
-    private String title;
+    private String name;
     private String amount;
     private String unit;
 
-    public Item(String title, String amount, String unit) {
-        this.title = title;
+    public Item(String name, String amount, String unit) {
+        this.name = name;
         this.amount = amount;
         this.unit = unit;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAmount() {

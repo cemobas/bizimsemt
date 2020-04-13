@@ -1,6 +1,6 @@
 package com.krakus.bizimsemt.controller.web;
 
-import com.krakus.bizimsemt.model.Book;
+import com.krakus.bizimsemt.domain.Item;
 import com.krakus.bizimsemt.model.ServiceResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,20 +13,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class BookController {
+public class ItemController {
 
-	List<Book> bookStore = new ArrayList<>();
+	List<Item> itemStore = new ArrayList<>();
 
-	@PostMapping("/saveBook")
-	public ResponseEntity<Object> addBook(@RequestBody Book book) {
-		bookStore.add(book);
-		ServiceResponse<Book> response = new ServiceResponse<Book>("success", book);
+	@PostMapping("/saveItem")
+	public ResponseEntity<Object> addItem(@RequestBody Item item) {
+		itemStore.add(item);
+		ServiceResponse<Item> response = new ServiceResponse<>("success", item);
 		return new ResponseEntity<Object>(response, HttpStatus.OK);
 	}
 
-	@GetMapping("/getBooks")
-	public ResponseEntity<Object> getAllBooks() {
-		ServiceResponse<List<Book>> response = new ServiceResponse<>("success", bookStore);
+	@GetMapping("/getItems")
+	public ResponseEntity<Object> getAllItems() {
+		ServiceResponse<List<Item>> response = new ServiceResponse<>("success", itemStore);
 		return new ResponseEntity<Object>(response, HttpStatus.OK);
 	}
 }
