@@ -21,7 +21,7 @@ $(document).ready(
 				$.ajax({
 					type : "POST",
 					contentType : "application/json",
-					url : "saveItem",
+					url : "items/save",
 					data : JSON.stringify(formData),
 					dataType : 'json',
 					success : function(result) {

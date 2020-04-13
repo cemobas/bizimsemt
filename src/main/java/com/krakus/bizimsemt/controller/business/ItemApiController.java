@@ -1,30 +1,28 @@
-package com.krakus.bizimsemt.controller.web;
+package com.krakus.bizimsemt.controller.business;
 
 import com.krakus.bizimsemt.domain.Item;
 import com.krakus.bizimsemt.model.ServiceResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class ItemController {
+@RequestMapping(path="items")
+public class ItemApiController {
 
 	List<Item> itemStore = new ArrayList<>();
 
-	@PostMapping("/saveItem")
+	@PostMapping("/save")
 	public ResponseEntity<Object> addItem(@RequestBody Item item) {
 		itemStore.add(item);
 		ServiceResponse<Item> response = new ServiceResponse<>("success", item);
 		return new ResponseEntity<Object>(response, HttpStatus.OK);
 	}
 
-	@GetMapping("/getItems")
+	@GetMapping("/getAll")
 	public ResponseEntity<Object> getAllItems() {
 		ServiceResponse<List<Item>> response = new ServiceResponse<>("success", itemStore);
 		return new ResponseEntity<Object>(response, HttpStatus.OK);

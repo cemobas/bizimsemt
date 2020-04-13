@@ -11,7 +11,7 @@ GET: $(document).ready(
 			function ajaxGet() {
 				$.ajax({
 					type : "GET",
-					url : "getItems",
+					url : "items/getAll",
 					success : function(result) {
 						if (result.status == "success") {
 							$('#getResultDiv ul').empty();
