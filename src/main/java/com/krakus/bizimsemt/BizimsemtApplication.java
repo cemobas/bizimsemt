@@ -5,6 +5,7 @@ import com.krakus.bizimsemt.domain.Order;
 import com.krakus.bizimsemt.repository.BuyerRepository;
 import com.krakus.bizimsemt.repository.OrderRepository;
 import com.krakus.bizimsemt.repository.SellerRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -43,7 +44,7 @@ public class BizimsemtApplication implements CommandLineRunner {
 			buyerRepository.save(buyer);
 		});
 		orderRepository.findAll().forEach(order -> {
-			System.out.println("Order " + order.getId() + " created at: " + order.getId().getDate() + " last modified at: " + order.getLastModified());
+			System.out.println("Order " + order.getId() + " created at: " + new ObjectId(order.getId()).getDate() + " last modified at: " + order.getLastModified());
 		});
 	}
 }

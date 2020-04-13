@@ -1,11 +1,9 @@
 package com.krakus.bizimsemt.domain;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
 import java.util.List;
@@ -16,17 +14,15 @@ import java.util.List;
 public class Order {
 
     @Id
-    @Field("_id") private ObjectId id;
+    private String id;
     @DBRef
     private Buyer buyer;
     @DBRef
     private Seller seller;
-    @Field
     private List<Item> items;
-    @Field
     private Date lastModified;
 
-    public Order(ObjectId id, Buyer buyer, Seller seller, List<Item> items, Date lastModified) {
+    public Order(String id, Buyer buyer, Seller seller, List<Item> items, Date lastModified) {
         this.id = id;
         this.buyer = buyer;
         this.seller = seller;
@@ -34,11 +30,11 @@ public class Order {
         this.lastModified = lastModified;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -19,7 +19,7 @@ public class Client {
     }
 
     public static Client create(Buyer buyer) {
-        return new Client(buyer.getId().toHexString(), buyer.getName(), buyer.getSurname(), buyer.getAddresses());
+        return new Client(buyer.getId(), buyer.getName(), buyer.getSurname(), buyer.getAddresses());
     }
 
     public String getId() {

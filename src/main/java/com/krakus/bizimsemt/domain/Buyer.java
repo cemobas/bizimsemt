@@ -1,10 +1,8 @@
 package com.krakus.bizimsemt.domain;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,20 +13,14 @@ import java.util.List;
 public class Buyer {
 
     @Id
-    @Field("_id")
-    private ObjectId id;
-    @Field
+    private String id;
     private String name;
-    @Field
     private String surname;
-    @Field
     private String kimlikNo;
-    @Field
     private LocalDateTime birthDate;
-    @Field
     private List<String> addresses;
 
-    public Buyer(ObjectId id, String name, String surname, String kimlikNo, LocalDateTime birthDate, List<String> addresses) {
+    public Buyer(String id, String name, String surname, String kimlikNo, LocalDateTime birthDate, List<String> addresses) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -37,11 +29,11 @@ public class Buyer {
         this.addresses = addresses;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
