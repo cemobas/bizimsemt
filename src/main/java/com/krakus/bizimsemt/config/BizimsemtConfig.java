@@ -21,4 +21,10 @@ public class BizimsemtConfig {
             config.exposeIdsFor(Order.class);
         });
     }
+
+    //  https://www.baeldung.com/spring-data-mongodb-transactions
+//    @Bean
+//    MongoTransactionManager transactionManager(MongoDbFactory dbFactory) {
+//        return new MongoTransactionManager(dbFactory);
+//    }
 }

@@ -1,13 +1,11 @@
 package com.krakus.bizimsemt.controller.business;
 
 import com.krakus.bizimsemt.aspect.Loggable;
-import com.krakus.bizimsemt.domain.Buyer;
 import com.krakus.bizimsemt.domain.Order;
 import com.krakus.bizimsemt.service.BuyerServices;
 import com.krakus.bizimsemt.service.OrderServices;
 import com.krakus.bizimsemt.service.SellerServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
