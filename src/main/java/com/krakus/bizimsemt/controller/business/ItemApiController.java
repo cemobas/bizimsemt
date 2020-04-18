@@ -1,5 +1,6 @@
 package com.krakus.bizimsemt.controller.business;
 
+import com.krakus.bizimsemt.aspect.Loggable;
 import com.krakus.bizimsemt.domain.Item;
 import com.krakus.bizimsemt.model.ServiceResponse;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ public class ItemApiController {
 
 	List<Item> itemStore = new ArrayList<>();
 
+	@Loggable
 	@PostMapping("/save")
 	public ResponseEntity<Object> addItem(@RequestBody Item item) {
 		itemStore.add(item);
@@ -22,6 +24,7 @@ public class ItemApiController {
 		return new ResponseEntity<Object>(response, HttpStatus.OK);
 	}
 
+	@Loggable
 	@GetMapping("/getAll")
 	public ResponseEntity<Object> getAllItems() {
 		ServiceResponse<List<Item>> response = new ServiceResponse<>("success", itemStore);

@@ -1,5 +1,6 @@
 package com.krakus.bizimsemt.controller.business;
 
+import com.krakus.bizimsemt.aspect.Loggable;
 import com.krakus.bizimsemt.domain.Buyer;
 import com.krakus.bizimsemt.domain.Order;
 import com.krakus.bizimsemt.service.BuyerServices;
@@ -21,11 +22,13 @@ public class OrderApiController {
     @Autowired
     private SellerServices sellerServices;
 
+    @Loggable
     @GetMapping(path = "/getOrders")
     public List<Order> getAllOrders() {
         return this.orderServices.getAllOrders();
     }
 
+    @Loggable
     @RequestMapping(path = "/addOrder", method=RequestMethod.POST)
     public String addOrder(@RequestBody Order order) {
         order.setBuyer(buyerServices.add(order.getBuyer()));

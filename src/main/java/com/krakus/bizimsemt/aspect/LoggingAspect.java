@@ -18,12 +18,12 @@ public class LoggingAspect {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggingAspect.class);
 
     @Pointcut("@annotation(Loggable)")
-    public void executeLogging(){
-
+    public void executeLogging() {
+        LOGGER.debug("Exe worked!");
     }
 
     @Around("executeLogging()")
-    public Object logMethodCall(ProceedingJoinPoint joinPoint) throws Throwable{
+    public Object logMethodCall(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
         Object returnValue = joinPoint.proceed();
         long totalTime = System.currentTimeMillis() - startTime;
@@ -31,15 +31,16 @@ public class LoggingAspect {
         message.append(joinPoint.getSignature().getName());
         message.append(" totalTime: ").append(totalTime).append("ms ");
         Object[] args = joinPoint.getArgs();
-        if(null!=args && args.length>0){
+        if (null != args && args.length > 0) {
             message.append(" args=[");
-            Arrays.asList(args).forEach(arg->{
+            Arrays.asList(args).forEach(arg -> {
                 message.append("arg=").append(arg).append("|");
             });
+            message.append("]");
         }
-        if(returnValue instanceof Collection){
-            message.append(" | returning ").append(((Collection)returnValue).size()).append(" instance(s)");
-        }else{
+        if (returnValue instanceof Collection) {
+            message.append(" | returning ").append(((Collection) returnValue).size()).append(" instance(s)");
+        } else {
             message.append(" | returning ").append(returnValue.toString());
         }
         LOGGER.info(message.toString());
