@@ -30,5 +30,6 @@ build/
 ### VS Code ###
 .vscode/
 
-### Other modules ###
+### Log modules ###
 *.log
+*.gz

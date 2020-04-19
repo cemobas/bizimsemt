@@ -38,7 +38,7 @@ public class ClientWebController {
 
     @PostMapping("/search")
     public String searchClient(@ModelAttribute Client client, Model model) {
-        Optional<Buyer> buyer = this.buyerServices.findBuyer(client.getId());
+        Optional<Buyer> buyer = this.buyerServices.find(client.getId());
         if(buyer.isPresent()) {
             model.addAttribute("client", Client.create(buyer.get()));
         } else {

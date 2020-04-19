@@ -1,5 +1,6 @@
 package com.krakus.bizimsemt.service;
 
+import com.krakus.bizimsemt.aspect.Loggable;
 import com.krakus.bizimsemt.domain.Buyer;
 import com.krakus.bizimsemt.repository.BuyerRepository;
 import org.bson.types.ObjectId;
@@ -27,7 +28,8 @@ public class BuyerServices {
         return buyers;
     }
 
-    public Optional<Buyer> findBuyer(String id){
+    @Loggable
+    public Optional<Buyer> find(String id){
         return buyerRepository.findById(new ObjectId(id));
     }
 

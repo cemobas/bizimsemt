@@ -1,10 +1,11 @@
 package com.krakus.bizimsemt.model;
 
 import com.krakus.bizimsemt.domain.Buyer;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.util.List;
 
-public class Client {
+public class Client extends RepresentationModel<Client> {
 
     private String id;
     private String name;

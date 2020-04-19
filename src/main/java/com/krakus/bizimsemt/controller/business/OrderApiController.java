@@ -2,6 +2,7 @@ package com.krakus.bizimsemt.controller.business;
 
 import com.krakus.bizimsemt.aspect.Loggable;
 import com.krakus.bizimsemt.domain.Order;
+import com.krakus.bizimsemt.model.OrderDto;
 import com.krakus.bizimsemt.service.BuyerServices;
 import com.krakus.bizimsemt.service.OrderServices;
 import com.krakus.bizimsemt.service.SellerServices;
@@ -9,9 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/orders")
 public class OrderApiController {
     @Autowired
     private OrderServices orderServices;
@@ -19,11 +21,23 @@ public class OrderApiController {
     private BuyerServices buyerServices;
     @Autowired
     private SellerServices sellerServices;
+    @Autowired
+    private OrderAssembler orderAssembler;
 
     @Loggable
-    @GetMapping(path = "/getOrders")
+    @GetMapping(path = "/all")
     public List<Order> getAllOrders() {
         return this.orderServices.getAllOrders();
+    }
+
+
+    @Loggable
+    @GetMapping(path = "/{orderId}")
+    public OrderDto find(@PathVariable(value = "orderId") String id) {
+        OrderDto orderDto = orderAssembler.toModel(orderServices.find(id)
+                .orElseThrow(() -> new NoSuchElementException("Order " + id + " not found"))
+        );
+        return orderDto;
     }
 
     @Loggable
