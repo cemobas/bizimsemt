@@ -1,11 +1,7 @@
 package com.krakus.bizimsemt.controller.business;
 
-import com.krakus.bizimsemt.domain.Buyer;
 import com.krakus.bizimsemt.domain.Order;
-import com.krakus.bizimsemt.model.Client;
 import com.krakus.bizimsemt.model.OrderDto;
-import com.krakus.bizimsemt.repository.BuyerRepository;
-import com.krakus.bizimsemt.repository.OrderRepository;
 import com.krakus.bizimsemt.repository.SellerRepository;
 import org.bson.types.ObjectId;
 import org.springframework.data.rest.webmvc.support.RepositoryEntityLinks;
@@ -17,11 +13,7 @@ import org.springframework.stereotype.Component;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-/**
- * Rating Assembler, convert TourRating to a Hateoas Supported Rating class
- *
- * Created by maryellenbowman.
- */
+
 @Component
 public class OrderAssembler extends RepresentationModelAssemblerSupport<Order, OrderDto> {
 

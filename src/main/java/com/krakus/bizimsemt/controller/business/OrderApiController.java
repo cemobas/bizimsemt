@@ -7,10 +7,12 @@ import com.krakus.bizimsemt.service.BuyerServices;
 import com.krakus.bizimsemt.service.OrderServices;
 import com.krakus.bizimsemt.service.SellerServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -25,9 +27,19 @@ public class OrderApiController {
     private OrderAssembler orderAssembler;
 
     @Loggable
+    @GetMapping
+    public List<OrderDto> getAllOrders() {
+        return this.orderServices.getAllOrders().stream().map(order -> orderAssembler.toModel(orderServices.find(order.getId())
+            .orElseThrow(() -> new NoSuchElementException("Order " + order.getId() + " not found"))
+    )).collect(Collectors.toList());
+    }
+
+    @Loggable
     @GetMapping(path = "/all")
-    public List<Order> getAllOrders() {
-        return this.orderServices.getAllOrders();
+    public List<OrderDto> getAllOrders(Pageable pageable) {
+        return this.orderServices.getAllOrders(pageable).stream().map(order -> orderAssembler.toModel(orderServices.find(order.getId())
+                .orElseThrow(() -> new NoSuchElementException("Order " + order.getId() + " not found"))
+        )).collect(Collectors.toList());
     }
 
 
@@ -51,4 +63,6 @@ public class OrderApiController {
         }
         return "failure";
     }
+
+    // You can apply @Validated in DTOs for put/post/patch operations (and verify existence of updated data explicitly inside the service method)
 }

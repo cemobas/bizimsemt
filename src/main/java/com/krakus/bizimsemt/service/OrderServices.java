@@ -4,6 +4,7 @@ import com.krakus.bizimsemt.domain.Order;
 import com.krakus.bizimsemt.repository.OrderRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,6 +21,12 @@ public class OrderServices {
     public OrderServices(OrderRepository orderRepository) {
         super();
         this.orderRepository = orderRepository;
+    }
+
+    public List<Order> getAllOrders(Pageable pageable){
+        List<Order> orders = new ArrayList<>();
+        this.orderRepository.findAll(pageable).forEach(orders::add);
+        return orders;
     }
 
     public List<Order> getAllOrders(){

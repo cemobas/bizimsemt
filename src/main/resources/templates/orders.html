@@ -2,19 +2,28 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Landon Hotel | Room View</title>
+    <title>Bizim Semt | Orders</title>
     <link th:href="@{/css/site.css}" rel="stylesheet"/>
 </head>
 <body>
-    <table>
+    <table border="1">
         <tr>
+            <th>Order ID</th>
             <th>Buyer name</th>
             <th>Seller name</th>
+            <th>Item list</th>
+            <th>Order date</th>
         </tr>
         <tr th:each="order:${orders}">
-            <td th:text="${order.buyer.name}"></td>
-            <td th:text="${order.seller.name}"></td>
             <td th:text="${order.id}"></td>
+            <td th:text="${order.buyerName}"></td>
+            <td th:text="${order.sellerName}"></td>
+            <td>
+                <span th:each="item:${order.items}">
+                    <span th:text="${item.amount+' '+item.unit+' '+item.name}"></span><br/>
+                </span>
+            </td>
+            <td th:text="${order.orderDate}"></td>
         </tr>
     </table>
 

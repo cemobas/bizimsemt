@@ -1,6 +1,6 @@
 package com.krakus.bizimsemt.controller.web;
 
-import com.krakus.bizimsemt.service.OrderServices;
+import com.krakus.bizimsemt.controller.business.OrderApiController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,20 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/orders")
 public class OrderWebController {
-    private OrderServices orderServices;
+    //private OrderServices orderServices;
+    private OrderApiController orderApiController;
 
     @Autowired
-    public OrderWebController(OrderServices orderServices){
+    public OrderWebController(OrderApiController orderApiController){
         super();
-        this.orderServices = orderServices;
+        this.orderApiController = orderApiController;
     }
 
     @GetMapping
     public String getOrders(Model model){
-        this.orderServices.getAllOrders().stream().forEach(o -> {
-            System.out.println(o.getId().toString());
-        });
-        model.addAttribute("orders", this.orderServices.getAllOrders());
+        model.addAttribute("orders", this.orderApiController.getAllOrders());
         return "orders";
     }
 }
