@@ -4,6 +4,7 @@ import com.krakus.bizimsemt.domain.Order;
 import com.krakus.bizimsemt.repository.OrderRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -23,10 +24,8 @@ public class OrderServices {
         this.orderRepository = orderRepository;
     }
 
-    public List<Order> getAllOrders(Pageable pageable){
-        List<Order> orders = new ArrayList<>();
-        this.orderRepository.findAll(pageable).forEach(orders::add);
-        return orders;
+    public Page<Order> getAllOrders(Pageable pageable){
+        return orderRepository.findAll(pageable);
     }
 
     public List<Order> getAllOrders(){

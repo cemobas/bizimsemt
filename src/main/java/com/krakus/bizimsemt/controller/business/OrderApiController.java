@@ -8,6 +8,8 @@ import com.krakus.bizimsemt.service.OrderServices;
 import com.krakus.bizimsemt.service.SellerServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,10 +38,8 @@ public class OrderApiController {
 
     @Loggable
     @GetMapping(path = "/all")
-    public List<OrderDto> getAllOrders(Pageable pageable) {
-        return this.orderServices.getAllOrders(pageable).stream().map(order -> orderAssembler.toModel(orderServices.find(order.getId())
-                .orElseThrow(() -> new NoSuchElementException("Order " + order.getId() + " not found"))
-        )).collect(Collectors.toList());
+    public PagedModel<Order> getAllOrders(Pageable pageable, PagedResourcesAssembler pagedAssembler) {
+        return pagedAssembler.toModel(this.orderServices.getAllOrders(pageable), orderAssembler);
     }
 
 
