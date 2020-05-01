@@ -1,9 +1,6 @@
 package com.krakus.bizimsemt;
 
 import com.krakus.bizimsemt.config.BizimsemtConfig;
-import com.krakus.bizimsemt.config.BizimsemtProperties;
-import com.krakus.bizimsemt.repository.OrderRepository;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

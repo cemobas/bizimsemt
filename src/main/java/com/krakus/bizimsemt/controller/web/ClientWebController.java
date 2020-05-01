@@ -26,24 +26,24 @@ public class ClientWebController {
         this.buyerServices = buyerServices;
     }
 
-    @GetMapping("/getAll")
-    public String getAllClients(Model model){
+    @GetMapping("/search")
+    public String searchClientUI(Model model){
         List<Client> allClients = new ArrayList<>();
         this.buyerServices.getAllBuyers().stream().forEach(buyer -> allClients.add(Client.create(buyer)));
         model.addAttribute("clients", allClients);
         model.addAttribute("selectedClient", allClients.get(0));
         model.addAttribute("selectedClientId", allClients.get(0).getId());
-        return "clients";
+        return "searchClient";
     }
 
-    @PostMapping("/search")
-    public String searchClient(@ModelAttribute Client client, Model model) {
+    @PostMapping("/fetch")
+    public String fetchClient(@ModelAttribute Client client, Model model) {
         Optional<Buyer> buyer = this.buyerServices.find(client.getId());
         if(buyer.isPresent()) {
             model.addAttribute("client", Client.create(buyer.get()));
         } else {
             return null;
         }
-        return "search";
+        return "fetchClient";
     }
 }
