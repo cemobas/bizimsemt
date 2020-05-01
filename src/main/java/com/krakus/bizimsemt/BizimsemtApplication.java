@@ -1,5 +1,7 @@
 package com.krakus.bizimsemt;
 
+import com.krakus.bizimsemt.config.BizimsemtConfig;
+import com.krakus.bizimsemt.config.BizimsemtProperties;
 import com.krakus.bizimsemt.repository.OrderRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 public class BizimsemtApplication implements CommandLineRunner {
 
 	@Autowired
-	OrderRepository orderRepository;
+	private BizimsemtConfig config;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BizimsemtApplication.class, args);
@@ -20,8 +22,6 @@ public class BizimsemtApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		orderRepository.findAll().forEach(order -> {
-			System.out.println("Order " + order.getId() + " created at: " + new ObjectId(order.getId()).getDate() + " last modified at: " + order.getLastModified());
-		});
+		System.out.println("Mongodb uri: " + config.getProperties().getMongoUri());
 	}
 }

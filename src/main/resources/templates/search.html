@@ -16,7 +16,15 @@
     <tr>
         <td>name</td>
         <td>
-            <span th:text="${client.name}"></span>
+            <span th:text="${client.name}+' '+${client.surname}"></span>
+        </td>
+    </tr>
+    <tr th:each="address, iterStat:${client.addresses}">
+        <td>
+            <span th:text="'address '+${iterStat.index+1}+': '"></span>
+        </td>
+        <td>
+            <span th:text="${address}"></span>
         </td>
     </tr>
 </table>
