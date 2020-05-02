@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class SellerServices {
+public class SellerService {
 
     private SellerRepository sellerRepository;
 
     @Autowired
-    public SellerServices(SellerRepository sellerRepository) {
+    public SellerService(SellerRepository sellerRepository) {
         super();
         this.sellerRepository = sellerRepository;
     }

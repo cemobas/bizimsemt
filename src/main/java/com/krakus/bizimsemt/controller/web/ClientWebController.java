@@ -2,7 +2,7 @@ package com.krakus.bizimsemt.controller.web;
 
 import com.krakus.bizimsemt.domain.Buyer;
 import com.krakus.bizimsemt.model.Client;
-import com.krakus.bizimsemt.service.BuyerServices;
+import com.krakus.bizimsemt.service.BuyerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,18 +18,18 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/clients")
 public class ClientWebController {
-    private BuyerServices buyerServices;
+    private BuyerService buyerService;
 
     @Autowired
-    public ClientWebController(BuyerServices buyerServices){
+    public ClientWebController(BuyerService buyerService){
         super();
-        this.buyerServices = buyerServices;
+        this.buyerService = buyerService;
     }
 
     @GetMapping("/search")
     public String searchClientUI(Model model){
         List<Client> allClients = new ArrayList<>();
-        this.buyerServices.getAllBuyers().stream().forEach(buyer -> allClients.add(Client.create(buyer)));
+        this.buyerService.getAllBuyers().stream().forEach(buyer -> allClients.add(Client.create(buyer)));
         model.addAttribute("clients", allClients);
         model.addAttribute("selectedClient", allClients.get(0));
         model.addAttribute("selectedClientId", allClients.get(0).getId());
@@ -38,7 +38,7 @@ public class ClientWebController {
 
     @PostMapping("/fetch")
     public String fetchClient(@ModelAttribute Client client, Model model) {
-        Optional<Buyer> buyer = this.buyerServices.find(client.getId());
+        Optional<Buyer> buyer = this.buyerService.find(client.getId());
         if(buyer.isPresent()) {
             model.addAttribute("client", Client.create(buyer.get()));
         } else {

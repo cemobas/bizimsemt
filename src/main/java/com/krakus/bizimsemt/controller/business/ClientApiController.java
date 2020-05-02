@@ -2,7 +2,7 @@ package com.krakus.bizimsemt.controller.business;
 
 import com.krakus.bizimsemt.aspect.Loggable;
 import com.krakus.bizimsemt.model.Client;
-import com.krakus.bizimsemt.service.BuyerServices;
+import com.krakus.bizimsemt.service.BuyerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,14 +15,14 @@ import java.util.NoSuchElementException;
 @RequestMapping("/api/clients")
 public class ClientApiController {
     @Autowired
-    private BuyerServices buyerServices;
+    private BuyerService buyerService;
     @Autowired
     private ClientAssembler assembler;
 
     @Loggable
     @GetMapping(path = "/{clientId}")
     public Client find(@PathVariable(value = "clientId") String id) {
-        Client client = assembler.toModel(buyerServices.find(id)
+        Client client = assembler.toModel(buyerService.find(id)
                 .orElseThrow(() -> new NoSuchElementException("Client " + id + " not found"))
         );
         return client;

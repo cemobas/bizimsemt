@@ -14,12 +14,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class OrderServices {
+public class OrderService {
 
     private OrderRepository orderRepository;
 
     @Autowired
-    public OrderServices(OrderRepository orderRepository) {
+    public OrderService(OrderRepository orderRepository) {
         super();
         this.orderRepository = orderRepository;
     }

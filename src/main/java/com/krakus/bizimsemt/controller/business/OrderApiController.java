@@ -3,9 +3,9 @@ package com.krakus.bizimsemt.controller.business;
 import com.krakus.bizimsemt.aspect.Loggable;
 import com.krakus.bizimsemt.domain.Order;
 import com.krakus.bizimsemt.model.OrderDto;
-import com.krakus.bizimsemt.service.BuyerServices;
-import com.krakus.bizimsemt.service.OrderServices;
-import com.krakus.bizimsemt.service.SellerServices;
+import com.krakus.bizimsemt.service.BuyerService;
+import com.krakus.bizimsemt.service.OrderService;
+import com.krakus.bizimsemt.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
@@ -20,18 +20,18 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/orders")
 public class OrderApiController {
     @Autowired
-    private OrderServices orderServices;
+    private OrderService orderService;
     @Autowired
-    private BuyerServices buyerServices;
+    private BuyerService buyerService;
     @Autowired
-    private SellerServices sellerServices;
+    private SellerService sellerService;
     @Autowired
     private OrderAssembler orderAssembler;
 
     @Loggable
     @GetMapping
     public List<OrderDto> getAllOrders() {
-        return this.orderServices.getAllOrders().stream().map(order -> orderAssembler.toModel(orderServices.find(order.getId())
+        return this.orderService.getAllOrders().stream().map(order -> orderAssembler.toModel(orderService.find(order.getId())
             .orElseThrow(() -> new NoSuchElementException("Order " + order.getId() + " not found"))
     )).collect(Collectors.toList());
     }
@@ -39,14 +39,14 @@ public class OrderApiController {
     @Loggable
     @GetMapping(path = "/all")
     public PagedModel<Order> getAllOrders(Pageable pageable, PagedResourcesAssembler pagedAssembler) {
-        return pagedAssembler.toModel(this.orderServices.getAllOrders(pageable), orderAssembler);
+        return pagedAssembler.toModel(this.orderService.getAllOrders(pageable), orderAssembler);
     }
 
 
     @Loggable
     @GetMapping(path = "/{orderId}")
     public OrderDto find(@PathVariable(value = "orderId") String id) {
-        OrderDto orderDto = orderAssembler.toModel(orderServices.find(id)
+        OrderDto orderDto = orderAssembler.toModel(orderService.find(id)
                 .orElseThrow(() -> new NoSuchElementException("Order " + id + " not found"))
         );
         return orderDto;
@@ -55,9 +55,9 @@ public class OrderApiController {
     @Loggable
     @RequestMapping(path = "/addOrder", method=RequestMethod.POST)
     public String addOrder(@RequestBody Order order) {
-        order.setBuyer(buyerServices.add(order.getBuyer()));
-        order.setSeller(sellerServices.add(order.getSeller()));
-        Order newOrder = orderServices.add(order);
+        order.setBuyer(buyerService.add(order.getBuyer()));
+        order.setSeller(sellerService.add(order.getSeller()));
+        Order newOrder = orderService.add(order);
         if (newOrder != null) {
             return "success";
         }
