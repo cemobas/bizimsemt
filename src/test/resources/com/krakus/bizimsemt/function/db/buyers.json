@@ -1,0 +1,104 @@
+[
+{
+    "_id" : {"$oid":"5e88fb268ed7979b9c1fc535"},
+    "name" : "Cem Onur",
+    "surname" : "Baş",
+    "kimlikNo" : "51217190916",
+    "birthDate" : {"$date":"1984-11-08T23:00:00.000Z"},
+    "addresses" : [ 
+        "Tanzimat Sok. 23/6 34730 Göztepe-İstanbul", 
+        "Abide-i Hürriyet Cad. 58/10 33130 Şişli-İstanbul"
+    ],
+    "_class" : "buyer"
+},
+{
+    "_id" : {"$oid":"5e88fb578ed7979b9c1fc541"},
+    "name" : "Zeynep Eylem",
+    "surname" : "Baş",
+    "kimlikNo" : "51217190850",
+    "birthDate" : {"$date":"1984-11-08T23:00:00.000Z"},
+    "addresses" : [ 
+        "Tanzimat Sok. 23/6 34730 Göztepe-İstanbul", 
+        "Başkurt Sok. 58/10 33130 Cihangir-İstanbul"
+    ],
+    "_class" : "buyer"
+},
+{
+    "_id" : {"$oid":"5e88fbc18ed7979b9c1fc555"},
+    "name" : "Saitcan",
+    "surname" : "Şale",
+    "kimlikNo" : "51117090050",
+    "birthDate" : {"$date":"1984-11-08T23:00:00.000Z"},
+    "addresses" : [ 
+        "Özkan Demir Cad. 43/6 Bostancı-İstanbul", 
+        "Pireci Sok. 13A/1 33130 Kartal-İstanbul"
+    ],
+    "_class" : "buyer"
+},
+{
+    "_id" : {"$oid":"5e91d540bdfe9c6aaba8dfc3"},
+    "name" : "Semih",
+    "surname" : "Pakalın",
+    "kimlikNo" : "55599900333",
+    "birthDate" : {"$date":"1984-11-08T23:00:00.000Z"},
+    "addresses" : [ 
+        "Tanzimat Sok. 23/5 34730 Göztepe-İstanbul"
+    ],
+    "_class" : "buyer"
+},
+{
+    "_id" : {"$oid":"5e9b085a234abf42aabcb3fa"},
+    "name" : "Koru",
+    "surname" : "Aldoğan",
+    "kimlikNo" : "50090000300",
+    "birthDate" : {"$date":"1984-11-08T23:00:00.000Z"},
+    "addresses" : [ 
+        "İhsan Özkes Sok. 1/2 33200 Bostancı-İstanbul"
+    ],
+    "_class" : "buyer"
+},
+{
+    "_id" : {"$oid":"5e9b11aa12680c3e4a574728"},
+    "name" : "Bilal",
+    "surname" : "Habeşi",
+    "kimlikNo" : "51080000200",
+    "birthDate" : {"$date":"1980-02-05T23:00:00.000Z"},
+    "addresses" : [ 
+        "Karanfil Sok. 2/6 31000 Fatih-İstanbul"
+    ],
+    "_class" : "buyer"
+},
+{
+    "_id" : {"$oid":"5e9b213910f90613850f25e5"},
+    "name" : "Bilal",
+    "surname" : "Habeşi",
+    "kimlikNo" : "51080000200",
+    "birthDate" : {"$date":"1984-11-08T23:00:00.000Z"},
+    "addresses" : [ 
+        "Karanfil Sok. 2/6 31000 Fatih-İstanbul"
+    ],
+    "_class" : "buyer"
+},
+{
+    "_id" : {"$oid":"5e9b225410f90613850f25e8"},
+    "name" : "Sibela",
+    "surname" : "Agoviç",
+    "kimlikNo" : "54400000200",
+    "birthDate" : {"$date":"1984-11-08T23:00:00.000Z"},
+    "addresses" : [ 
+        "İzzetbegoviç Bulvarı. 12/5 34000 Yenibosna-İstanbul"
+    ],
+    "_class" : "buyer"
+},
+{
+    "_id" : {"$oid":"5e9b48eaefeb0c3b992e493f"},
+    "name" : "Nil",
+    "surname" : "Recepoviç",
+    "kimlikNo" : "54400000211",
+    "birthDate" : {"$date":"1987-04-25T22:00:00.000Z"},
+    "addresses" : [ 
+        "İzzetbegoviç Bulvarı. 12/6 34000 Yenibosna-İstanbul"
+    ],
+    "_class" : "buyer"
+}
+]

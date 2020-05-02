@@ -36,7 +36,7 @@ public class BuyerService {
         if (buyer.getName() != null) {
             newBuyer =  buyerRepository.save(buyer);
         }
-        System.out.println("Buyer saved with id: " + newBuyer.getId().toString());
+        System.out.println("Buyer saved with id: " + newBuyer.getId());
         return newBuyer;
     }
 }
