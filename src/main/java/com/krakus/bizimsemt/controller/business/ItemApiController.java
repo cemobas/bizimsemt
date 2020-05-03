@@ -18,10 +18,15 @@ public class ItemApiController {
 
 	@Loggable
 	@PostMapping("/save")
-	public ResponseEntity<Object> addItem(@RequestBody Item item) {
-		itemStore.add(item);
-		ServiceResponse<Item> response = new ServiceResponse<>("success", item);
-		return new ResponseEntity<Object>(response, HttpStatus.OK);
+	public ResponseEntity<ServiceResponse<Item>> addItem(@RequestBody Item item) {
+		if(null == item) {
+			ServiceResponse<Item> response = new ServiceResponse<>("failure", item);
+			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+		} else {
+			itemStore.add(item);
+			ServiceResponse<Item> response = new ServiceResponse<>("success", item);
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		}
 	}
 
 	@Loggable

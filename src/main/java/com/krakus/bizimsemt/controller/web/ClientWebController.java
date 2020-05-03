@@ -18,13 +18,9 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/clients")
 public class ClientWebController {
-    private BuyerService buyerService;
 
     @Autowired
-    public ClientWebController(BuyerService buyerService){
-        super();
-        this.buyerService = buyerService;
-    }
+    private BuyerService buyerService;
 
     @GetMapping("/search")
     public String searchClientUI(Model model){
@@ -38,7 +34,7 @@ public class ClientWebController {
 
     @PostMapping("/fetch")
     public String fetchClient(@ModelAttribute Client client, Model model) {
-        Optional<Buyer> buyer = this.buyerService.find(client.getId());
+        Optional<Buyer> buyer = buyerService.find(client.getId());
         if(buyer.isPresent()) {
             model.addAttribute("client", Client.create(buyer.get()));
         } else {

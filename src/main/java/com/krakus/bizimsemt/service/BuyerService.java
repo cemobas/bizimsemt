@@ -13,13 +13,8 @@ import java.util.Optional;
 @Service
 public class BuyerService {
 
-    private BuyerRepository buyerRepository;
-
     @Autowired
-    public BuyerService(BuyerRepository buyerRepository) {
-        super();
-        this.buyerRepository = buyerRepository;
-    }
+    private BuyerRepository buyerRepository;
 
     public List<Buyer> getAllBuyers(){
         List<Buyer> buyers = new ArrayList<>();

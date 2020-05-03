@@ -1,4 +1,4 @@
-package com.krakus.bizimsemt.component;
+package com.krakus.bizimsemt.data;
 
 import com.krakus.bizimsemt.domain.Buyer;
 import com.krakus.bizimsemt.function.FetchCollectionFunction;
