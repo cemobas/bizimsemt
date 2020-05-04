@@ -7,6 +7,7 @@ import com.mongodb.BasicDBObject;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,10 @@ import java.util.Date;
 import java.util.List;
 
 @Component
+@ConditionalOnProperty(
+        name = "initialize.buyer.data",
+        havingValue = "true",
+        matchIfMissing = true)
 public class BuyerCollection {
 
     public BuyerCollection(@Autowired MongoTemplate mongoTemplate) {
