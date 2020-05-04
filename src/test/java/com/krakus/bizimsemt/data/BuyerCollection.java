@@ -7,6 +7,7 @@ import com.mongodb.BasicDBObject;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -17,10 +18,10 @@ import java.util.List;
 @Component
 public class BuyerCollection {
 
-    public BuyerCollection(@Autowired BuyerRepository buyerRepository) {
+    public BuyerCollection(@Autowired MongoTemplate mongoTemplate) {
         FetchCollectionFunction fetchCollectionFunction = new FetchCollectionFunction();
         JSONArray buyerJson = fetchCollectionFunction.apply("buyers");
-        buyerJson.stream().forEach(b -> buyerRepository.save(convert((JSONObject) b)));
+        buyerJson.stream().forEach(b -> mongoTemplate.save(convert((JSONObject) b)));
     }
 
     private Buyer convert(JSONObject obj) {

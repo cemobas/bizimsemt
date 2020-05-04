@@ -9,6 +9,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static com.krakus.bizimsemt.data.DataUtils.addresses;
@@ -22,18 +25,18 @@ public class BuyerServiceIntegrationTest {
     @Autowired
     private BuyerCollection buyerCollection;
     @Autowired
-    private BuyerRepository buyerRepository;
+    private MongoTemplate mongoTemplate;
     @Autowired
     private BuyerService buyerService;
     private ObjectId id = new ObjectId();
 
     @After
     public void reset() {
-        buyerRepository.deleteById(id);
+        mongoTemplate.remove(new Query(Criteria.where("id").is(id)), Buyer.class);
     }
 
     @Test
-    public void testAddBuyer() {
+    public void testAddElvirBolic() {
         // Prepare new record
         Buyer buyer = new Buyer(id.toString(), "Elvir", "Bolic", "1234567890", birthDate(40), addresses());
 
@@ -46,7 +49,7 @@ public class BuyerServiceIntegrationTest {
     }
 
     @Test
-    public void testAddBuyer2() {
+    public void testAddViorelMoldovan() {
         // Prepare new record
         Buyer buyer = new Buyer(id.toString(), "Viorel", "Moldovan", "0987654321", birthDate(45), addresses());
 
