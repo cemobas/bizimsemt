@@ -1,40 +1,49 @@
 package com.krakus.bizimsemt.service;
 
-import com.krakus.bizimsemt.data.BuyerCollection;
+import com.krakus.bizimsemt.data.BizimTemplate;
 import com.krakus.bizimsemt.domain.Buyer;
-import com.krakus.bizimsemt.repository.BuyerRepository;
 import org.bson.types.ObjectId;
-import org.junit.After;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.ActiveProfiles;
+
+import java.util.Optional;
 
 import static com.krakus.bizimsemt.data.DataUtils.addresses;
 import static com.krakus.bizimsemt.data.DataUtils.birthDate;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
+@ActiveProfiles("it")
 public class BuyerServiceIntegrationTest {
 
+    private static final String ID_FROM_DB = "5e9b225410f90613850f25e8";
+
     @Autowired
-    private BuyerCollection buyerCollection;
-    @Autowired
-    private MongoTemplate mongoTemplate;
+    private BizimTemplate bizimTemplate;
     @Autowired
     private BuyerService buyerService;
     private ObjectId id = new ObjectId();
 
-    @After
-    public void reset() {
-        mongoTemplate.remove(new Query(Criteria.where("id").is(id)), Buyer.class);
+    @BeforeEach
+    public void setUp() {
+        bizimTemplate.init("buyers");
     }
 
+    @AfterEach
+    public void reset() {
+        bizimTemplate.remove(new Query(Criteria.where("id").is(id)), Buyer.class);
+    }
+
+    @DisplayName("given a football player" +
+            "when we add him as a buyer" +
+            "then it is added to db")
     @Test
     public void testAddElvirBolic() {
         // Prepare new record
@@ -48,6 +57,9 @@ public class BuyerServiceIntegrationTest {
         assertThat(newBuyer).isSameAs(buyer);
     }
 
+    @DisplayName("given a football player" +
+            "when we add him as a buyer" +
+            "then it is added to db")
     @Test
     public void testAddViorelMoldovan() {
         // Prepare new record
@@ -59,6 +71,15 @@ public class BuyerServiceIntegrationTest {
         // Verify
         assertThat(buyerService.find(id.toString())).isPresent();
         assertThat(newBuyer).isSameAs(buyer);
+    }
+
+    @DisplayName("given pre-inserted data records" +
+            "when we search for one" +
+            "then it is fetched and present")
+    @Test
+    public void testFind() {
+        Optional<Buyer> buyer = buyerService.find(ID_FROM_DB);
+        assertThat(buyer).isPresent();
     }
 
 }

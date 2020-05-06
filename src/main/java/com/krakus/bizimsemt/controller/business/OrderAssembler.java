@@ -4,6 +4,7 @@ import com.krakus.bizimsemt.domain.Order;
 import com.krakus.bizimsemt.model.OrderDto;
 import com.krakus.bizimsemt.repository.SellerRepository;
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.support.RepositoryEntityLinks;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.LinkBuilder;
@@ -17,12 +18,12 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @Component
 public class OrderAssembler extends RepresentationModelAssemblerSupport<Order, OrderDto> {
 
-    //Helper to fetch Spring Data Rest Repository links.
+    // Helper to fetch Spring Data Rest Repository links.
+    @Autowired
     private RepositoryEntityLinks entityLinks;
 
-    public OrderAssembler(RepositoryEntityLinks entityLinks) {
+    public OrderAssembler() {
         super(OrderApiController.class, OrderDto.class);
-        this.entityLinks = entityLinks;
     }
 
     @Override

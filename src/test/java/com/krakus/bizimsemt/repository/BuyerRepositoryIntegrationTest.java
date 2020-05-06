@@ -4,15 +4,15 @@ import com.krakus.bizimsemt.config.BizimsemtConfig;
 import com.krakus.bizimsemt.config.BizimsemtProperties;
 import com.krakus.bizimsemt.domain.Buyer;
 import org.bson.types.ObjectId;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Optional;
 
@@ -23,8 +23,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @Import({BizimsemtConfig.class, BizimsemtProperties.class})
-@RunWith(SpringRunner.class)
 @DataMongoTest
+@ActiveProfiles("it")
 public class BuyerRepositoryIntegrationTest {
     @Autowired
     private MongoTemplate mongoTemplate;
@@ -33,17 +33,20 @@ public class BuyerRepositoryIntegrationTest {
     private ObjectId id = ObjectId.get();
     private Buyer buyer;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         buyer = new Buyer(id.toString(), "Dirk", "Kuyt", "9191919", birthDate(46), addresses());
         mongoTemplate.save(buyer, "buyers");
     }
 
-    @After
+    @AfterEach
     public void reset() {
         mongoTemplate.remove(buyer, "buyers");
     }
 
+    @DisplayName("given a buyer id" +
+            "when we search for it in repo" +
+            "then it is fetched")
     @Test
     public void testFindById() {
         Optional<Buyer> foundBuyer = buyerRepository.findById(id);

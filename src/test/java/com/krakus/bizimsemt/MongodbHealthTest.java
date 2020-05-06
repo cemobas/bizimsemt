@@ -4,8 +4,8 @@ import com.krakus.bizimsemt.config.BizimsemtConfig;
 import com.krakus.bizimsemt.config.BizimsemtProperties;
 import org.bson.Document;
 import org.hamcrest.Matchers;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration;
@@ -13,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Map;
 
@@ -22,15 +21,17 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 
-@RunWith(SpringRunner.class)
 @Import({BizimsemtConfig.class, BizimsemtProperties.class})
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = "initialize.buyer.data=false")
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @EnableAutoConfiguration(exclude = {EmbeddedMongoAutoConfiguration.class})
 public class MongodbHealthTest {
 
     @Autowired
     MongoTemplate mongoTemplate;
 
+    @DisplayName("given db" +
+            "when we ping db" +
+            "then gives a signal")
     @Test
     public void dbPrimaryIsOk() {
         try {

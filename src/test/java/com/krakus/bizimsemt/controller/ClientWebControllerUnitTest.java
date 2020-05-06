@@ -6,9 +6,9 @@ import com.krakus.bizimsemt.controller.web.ClientWebController;
 import com.krakus.bizimsemt.domain.Buyer;
 import com.krakus.bizimsemt.service.BuyerService;
 import org.bson.types.ObjectId;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Optional;
@@ -32,9 +32,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@RunWith(SpringRunner.class)
 @WebMvcTest(ClientWebController.class)
 @Import({BizimsemtConfig.class, BizimsemtProperties.class})
+@ActiveProfiles("it")
 public class ClientWebControllerUnitTest {
 
     @Autowired
@@ -46,11 +46,14 @@ public class ClientWebControllerUnitTest {
     @InjectMocks
     private ClientWebController clientWebController;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 
+    @DisplayName("given a football player" +
+            "when clients/fetch endpoint is invoked" +
+            "then asked player is fetched")
     @Test
     public void testAddContactHappyPath() throws Exception {
         String id = ObjectId.get().toString();
