@@ -1,4 +1,4 @@
-package com.krakus.bizimsemt;
+package com.krakus.bizimsemt.feature;
 
 import com.krakus.bizimsemt.controller.ClientWebControllerUnitTest;
 import com.krakus.bizimsemt.repository.BuyerRepositoryIntegrationTest;

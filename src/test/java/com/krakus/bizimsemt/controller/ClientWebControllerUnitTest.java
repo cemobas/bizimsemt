@@ -34,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(ClientWebController.class)
 @Import({BizimsemtConfig.class, BizimsemtProperties.class})
-@ActiveProfiles("it")
+@ActiveProfiles("ut")
 public class ClientWebControllerUnitTest {
 
     @Autowired

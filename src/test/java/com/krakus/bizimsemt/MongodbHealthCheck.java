@@ -24,7 +24,7 @@ import static org.junit.Assert.assertThat;
 @Import({BizimsemtConfig.class, BizimsemtProperties.class})
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @EnableAutoConfiguration(exclude = {EmbeddedMongoAutoConfiguration.class})
-public class MongodbHealthTest {
+public class MongodbHealthCheck {
 
     @Autowired
     MongoTemplate mongoTemplate;
