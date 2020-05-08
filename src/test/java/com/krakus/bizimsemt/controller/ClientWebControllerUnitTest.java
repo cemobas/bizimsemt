@@ -1,7 +1,9 @@
 package com.krakus.bizimsemt.controller;
 
+import com.krakus.bizimsemt.config.ApplicationSecurityConfiguration;
 import com.krakus.bizimsemt.config.BizimsemtConfig;
 import com.krakus.bizimsemt.config.BizimsemtProperties;
+import com.krakus.bizimsemt.config.SpringSecurityWebAuxTestConfig;
 import com.krakus.bizimsemt.controller.web.ClientWebController;
 import com.krakus.bizimsemt.domain.Buyer;
 import com.krakus.bizimsemt.service.BuyerService;
@@ -16,6 +18,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -33,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(ClientWebController.class)
-@Import({BizimsemtConfig.class, BizimsemtProperties.class})
+@Import({BizimsemtConfig.class, BizimsemtProperties.class, ApplicationSecurityConfiguration.class, SpringSecurityWebAuxTestConfig.class})
 @ActiveProfiles("ut")
 public class ClientWebControllerUnitTest {
 
@@ -55,6 +58,7 @@ public class ClientWebControllerUnitTest {
             "when clients/fetch endpoint is invoked" +
             "then asked player is fetched")
     @Test
+    @WithUserDetails("foo")
     public void testAddContactHappyPath() throws Exception {
         String id = ObjectId.get().toString();
         Buyer buyer = new Buyer(id, "Dirk", "Kuyt", "9191919", birthDate(46), addresses());
