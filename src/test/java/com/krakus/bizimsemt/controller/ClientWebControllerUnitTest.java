@@ -54,15 +54,13 @@ public class ClientWebControllerUnitTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    @DisplayName("given a football player" +
-            "when clients/fetch endpoint is invoked" +
+    @DisplayName("given a football player " +
+            "when clients/fetch endpoint is invoked " +
             "then asked player is fetched")
     @Test
-    @WithUserDetails("foo")
+    @WithUserDetails("admin")
     public void testAddContactHappyPath() throws Exception {
-        String id = ObjectId.get().toString();
-        Buyer buyer = new Buyer(id, "Dirk", "Kuyt", "9191919", birthDate(46), addresses());
-
+        Buyer buyer = buyer();
         when(buyerService.find(any(String.class))).thenReturn(Optional.of(buyer));
 
         mockMvc
@@ -75,6 +73,25 @@ public class ClientWebControllerUnitTest {
                 .andExpect(model().attribute("client", hasProperty("surname", is(buyer.getSurname()))))
                 .andExpect(model().attribute("client", hasProperty("addresses", is(buyer.getAddresses()))))
                 .andReturn();
+    }
+
+    @DisplayName("given a football player " +
+            "when unauthorized user invokes /clients/fetch endpoint " +
+            "then request is rejected with 403")
+    @Test
+    @WithUserDetails("user")
+    public void testAddContactWithUnauthorizedUser() throws Exception {
+        Buyer buyer = buyer();
+        when(buyerService.find(any(String.class))).thenReturn(Optional.of(buyer));
+
+        mockMvc
+                .perform(post("/clients/fetch"))
+                .andExpect(status().is(403))
+                .andReturn();
+    }
+
+    private Buyer buyer() {
+        return new Buyer(ObjectId.get().toHexString(), "Dirk", "Kuyt", "9191919", birthDate(46), addresses());
     }
 
 }

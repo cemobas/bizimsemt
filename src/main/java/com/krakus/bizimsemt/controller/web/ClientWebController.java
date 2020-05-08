@@ -4,6 +4,7 @@ import com.krakus.bizimsemt.domain.Buyer;
 import com.krakus.bizimsemt.model.Client;
 import com.krakus.bizimsemt.service.BuyerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ public class ClientWebController {
     private BuyerService buyerService;
 
     @GetMapping("/search")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String searchClientUI(Model model){
         List<Client> allClients = new ArrayList<>();
         this.buyerService.getAllBuyers().stream().forEach(buyer -> allClients.add(Client.create(buyer)));
@@ -33,6 +35,7 @@ public class ClientWebController {
     }
 
     @PostMapping("/fetch")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String fetchClient(@ModelAttribute Client client, Model model) {
         Optional<Buyer> buyer = buyerService.find(client.getId());
         if(buyer.isPresent()) {

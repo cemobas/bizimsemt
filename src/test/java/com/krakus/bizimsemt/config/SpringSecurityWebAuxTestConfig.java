@@ -1,5 +1,6 @@
 package com.krakus.bizimsemt.config;
 
+import com.krakus.bizimsemt.auth.AuthGroup;
 import com.krakus.bizimsemt.auth.BizimUserPrincipal;
 import com.krakus.bizimsemt.auth.User;
 import org.bson.types.ObjectId;
@@ -9,7 +10,9 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @TestConfiguration
 public class SpringSecurityWebAuxTestConfig {
@@ -17,11 +20,18 @@ public class SpringSecurityWebAuxTestConfig {
     @Bean
     @Primary
     public UserDetailsService userDetailsService() {
-        User basicUser = new User(new ObjectId("5eb4684550f1e2cd98b77c70"), "user", "password");
-        BizimUserPrincipal basicUserPrincipal = new BizimUserPrincipal(basicUser);
+        User basicUser = new User(ObjectId.get(), "user", "password");
+        List<AuthGroup> basicAuthGroup = new ArrayList<>();
+        basicAuthGroup.add(new AuthGroup(ObjectId.get(), "user", "ROLE_USER"));
 
-        User managerUser = new User(new ObjectId("5eb4683050f1e2cd98b77c64"), "foo", "bar");
-        BizimUserPrincipal managerUserPrincipal = new BizimUserPrincipal(managerUser);
+        BizimUserPrincipal basicUserPrincipal = new BizimUserPrincipal(basicUser, basicAuthGroup);
+
+        User managerUser = new User(ObjectId.get(), "admin", "password");
+        List<AuthGroup> managerAuthGroup = new ArrayList<>();
+        managerAuthGroup.add(new AuthGroup(ObjectId.get(), "admin", "ROLE_USER"));
+        managerAuthGroup.add(new AuthGroup(ObjectId.get(), "admin", "ROLE_ADMIN"));
+
+        BizimUserPrincipal managerUserPrincipal = new BizimUserPrincipal(managerUser, managerAuthGroup);
 
         return new InMemoryUserDetailsManager(Arrays.asList(
                 basicUserPrincipal, managerUserPrincipal
