@@ -1,31 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}" lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>Bizim Semt | Orders</title>
+    <title>Bizim Semt | Siparişler</title>
     <link th:href="@{/css/site.css}" rel="stylesheet"/>
 </head>
 <body>
-    <table border="1">
-        <tr>
-            <th>Order ID</th>
-            <th>Buyer name</th>
-            <th>Seller name</th>
-            <th>Item list</th>
-            <th>Order date</th>
-        </tr>
-        <tr th:each="order:${orders}">
-            <td th:text="${order.id}"></td>
-            <td th:text="${order.buyerName}"></td>
-            <td th:text="${order.sellerName}"></td>
-            <td>
+<div layout:fragment="content">
+    <div class="container main-content">
+        <div class="row">
+            <div class="col-7">
+                <h3>Siparişler</h3>
+            </div>
+            <div class="col">
+                <a th:href="@{/orders/add}">Sipariş ekle</a>
+            </div>
+        </div>
+        <table border="1">
+            <tr>
+                <th>Order ID</th>
+                <th>Buyer name</th>
+                <th>Seller name</th>
+                <th>Item list</th>
+                <th>Order date</th>
+            </tr>
+            <tr th:each="order:${orders}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.buyerName}"></td>
+                <td th:text="${order.sellerName}"></td>
+                <td>
                 <span th:each="item:${order.items}">
                     <span th:text="${item.amount+' '+item.unit+' '+item.name}"></span><br/>
                 </span>
-            </td>
-            <td th:text="${order.orderDate}"></td>
-        </tr>
-    </table>
-
+                </td>
+                <td th:text="${order.orderDate}"></td>
+            </tr>
+        </table>
+    </div>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script th:src="@{/js/table.js}"></script>
+</div>
 </body>
 </html>
