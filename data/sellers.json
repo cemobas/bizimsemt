@@ -1,0 +1,9 @@
+{"_id":{"$oid":"5e88fd268ed7979b9c1fc626"},"address":"Güvenç Sok. 128/1 34730 Göztepe-İstanbul","name":"Martı Market","telephone":"02163557711"}
+{"_id":{"$oid":"5e88fcfe8ed7979b9c1fc613"},"address":"Hilafet Cad. 1/1 30300 Bostancı-İstanbul","name":"Çağrı Market","telephone":"02163557700"}
+{"_id":{"$oid":"5e88fd448ed7979b9c1fc638"},"address":"Başkurt Sok. 12/1 34730 Şişli-İstanbul","name":"Birader Şarküteri","telephone":"02123557722"}
+{"_id":{"$oid":"5e9b213910f90613850f25e6"},"address":"Kocabaş Sok. No:22 31000 Fatih-İstanbul","name":"Refik Market","telephone":"02163006611","_class":"seller"}
+{"_id":{"$oid":"5e9b48eaefeb0c3b992e4940"},"address":"Saraybosna Sok. No:11 34000 Yenibosna-İstanbul","name":"Sait Market","telephone":"02163106611","_class":"seller"}
+{"_id":{"$oid":"5e9b225410f90613850f25e9"},"address":"Saraybosna Sok. No:11 34000 Yenibosna-İstanbul","name":"Sait Market","telephone":"02163106611","_class":"seller"}
+{"_id":{"$oid":"5e91d544bdfe9c6aaba8dfc4"},"address":"Güvenç Sok. 128/1 34730 Göztepe-İstanbul","name":"Martı Market","telephone":"02163557711","_class":"seller"}
+{"_id":{"$oid":"5e9b085a234abf42aabcb3fb"},"address":"İhsan Özkes Sok. 1/1 33200 Bostancı-İstanbul","name":"Kemal Market","telephone":"02163006611","_class":"seller"}
+{"_id":{"$oid":"5e9b232b17e01e2f85742ce6"},"address":"Saraybosna Sok. No:11 34000 Yenibosna-İstanbul","name":"Sait Market","telephone":"02163106611","_class":"seller"}

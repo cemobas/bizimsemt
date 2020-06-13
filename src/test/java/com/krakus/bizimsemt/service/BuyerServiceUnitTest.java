@@ -1,6 +1,7 @@
 package com.krakus.bizimsemt.service;
 
 import com.krakus.bizimsemt.domain.Buyer;
+import com.krakus.bizimsemt.domain.Gender;
 import com.krakus.bizimsemt.repository.BuyerRepository;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.DisplayName;
@@ -34,7 +35,7 @@ public class BuyerServiceUnitTest {
     @Test
     public void testAddBuyer() {
         // Prepare new record
-        Buyer mockSavedBuyer = new Buyer(id.toString(), "Elvir", "Bolic", "1234567890", birthDate(40), addresses());
+        Buyer mockSavedBuyer = new Buyer(id.toString(), "Elvir", "Bolic", "1234567890", Gender.MALE, birthDate(40), addresses());
         when(buyerRepository.save(any(Buyer.class))).thenReturn(mockSavedBuyer);
 
         Buyer mockedBuyer = mock(Buyer.class);

@@ -1,0 +1,29 @@
+{"_id":{"$oid":"5e9b085a234abf42aabcb3fa"},"name":"Koru","surname":"Aldoğan","kimlikNo":"50090000300","birthDate":{"$date":"1984-11-08T23:00:00Z"},"addresses":["İhsan Özkes Sok. 1/2 33200 Bostancı-İstanbul"],"_class":"buyer"}
+{"_id":{"$oid":"5e9b11aa12680c3e4a574728"},"name":"Bilal","surname":"Habeşi","kimlikNo":"51080000200","birthDate":{"$date":"1980-02-05T23:00:00Z"},"addresses":["Karanfil Sok. 2/6 31000 Fatih-İstanbul"],"_class":"buyer"}
+{"_id":{"$oid":"5e88fb268ed7979b9c1fc535"},"name":"Cem Onur","surname":"Baş","kimlikNo":"51217190916","birthDate":{"$date":"1984-11-08T23:00:00Z"},"addresses":["Tanzimat Sok. 23/6 34730 Göztepe-İstanbul","Abide-i Hürriyet Cad. 58/10 33130 Şişli-İstanbul"],"_class":"buyer"}
+{"_id":{"$oid":"5e9b48eaefeb0c3b992e493f"},"name":"Nil","surname":"Recepoviç","kimlikNo":"54400000211","birthDate":{"$date":"1987-04-25T22:00:00Z"},"addresses":["İzzetbegoviç Bulvarı. 12/6 34000 Yenibosna-İstanbul"],"_class":"buyer"}
+{"_id":{"$oid":"5e9b213910f90613850f25e5"},"name":"Bilal","surname":"Habeşi","kimlikNo":"51080000200","birthDate":{"$date":"1984-11-08T23:00:00Z"},"addresses":["Karanfil Sok. 2/6 31000 Fatih-İstanbul"],"_class":"buyer"}
+{"_id":{"$oid":"5e91d540bdfe9c6aaba8dfc3"},"name":"Semih","surname":"Pakalın","kimlikNo":"55599900333","birthDate":{"$date":"1984-11-08T23:00:00Z"},"addresses":["Tanzimat Sok. 23/5 34730 Göztepe-İstanbul"],"_class":"buyer"}
+{"_id":{"$oid":"5e88fb578ed7979b9c1fc541"},"name":"Zeynep Eylem","surname":"Baş","kimlikNo":"51217190850","birthDate":{"$date":"1984-11-08T23:00:00Z"},"addresses":["Tanzimat Sok. 23/6 34730 Göztepe-İstanbul","Başkurt Sok. 58/10 33130 Cihangir-İstanbul"],"_class":"buyer"}
+{"_id":{"$oid":"5e9b225410f90613850f25e8"},"name":"Sibela","surname":"Agoviç","kimlikNo":"54400000200","birthDate":{"$date":"1984-11-08T23:00:00Z"},"addresses":["İzzetbegoviç Bulvarı. 12/5 34000 Yenibosna-İstanbul"],"_class":"buyer"}
+{"_id":{"$oid":"5e88fbc18ed7979b9c1fc555"},"name":"Saitcan","surname":"Şale","kimlikNo":"51117090050","birthDate":{"$date":"1984-11-08T23:00:00Z"},"addresses":["Özkan Demir Cad. 43/6 Bostancı-İstanbul","Pireci Sok. 13A/1 33130 Kartal-İstanbul"],"_class":"buyer"}
+{"_id":{"$oid":"5ecbb162d1cd936394001d7c"},"name":"Berna","surname":"Özçağlayan","kimlikNo":"51117799916","_class":"buyer"}
+{"_id":{"$oid":"5ecbc756399ae314aec5e779"},"name":"Öznur","surname":"Erbaş","kimlikNo":"12312323123","_class":"buyer"}
+{"_id":{"$oid":"5ecbe81d729e533b6542e23b"},"name":"Ali","surname":"Özbay","kimlikNo":"51111111111","addresses":["Bağdat Cad. 12/25 Çiftehavuzlar, İstanbul","Özkan Cad. 11/11 Beşiktaş/İstanbul"],"_class":"buyer"}
+{"_id":{"$oid":"5ecbe91471c04e364fb81485"},"name":"Cem Onur","surname":"Baş","kimlikNo":"41327280805","addresses":["Solmuş Sok. 11/11 Göztepe-İstanbul","Soykan Sok. 22/22 Şişli-İstanbul"],"_class":"buyer"}
+{"_id":{"$oid":"5ecbe9e285482a481ce0bb26"},"name":"Asım Can","surname":"Gündüz","kimlikNo":"31331331313","addresses":["Sonsuz Sok. 43/12 Osmanbey/İstanbul","Paspas Sok. 12/12 Marmaris/Muğla"],"_class":"buyer"}
+{"_id":{"$oid":"5ecbece033f80d4de4118d09"},"name":"Serkan","surname":"Erbiş","kimlikNo":"51551551515","addresses":["Bostan Sok. 14/41 41092 Ataşehir-İstanbul",""],"_class":"buyer"}
+{"_id":{"$oid":"5ecbedb87312f26e73450e04"},"name":"Serkan","surname":"Erbiş","kimlikNo":"12312323123","addresses":["Pilavcı Sok. 12/12 Ataşehir, İstanbul",""],"_class":"buyer"}
+{"_id":{"$oid":"5ecbee007312f26e73450e05"},"name":"Serkan","surname":"Erbiş","kimlikNo":"2345234","addresses":["23rasdf","asfda"],"_class":"buyer"}
+{"_id":{"$oid":"5ecbf012c281c67a93def35a"},"name":"asdfas","surname":"asdfa","kimlikNo":"12314","addresses":["asdf","asdfa"],"_class":"buyer"}
+{"_id":{"$oid":"5ecbf0ba9952ba73601c1e0e"},"name":"Serkan","surname":"Erbiş","kimlikNo":"24121234","birthDate":{"$date":"1984-11-10T22:00:00Z"},"addresses":["123dfgsd","123dfgs"],"_class":"buyer"}
+{"_id":{"$oid":"5ecc2e612b56017c24410b92"},"name":"Ali","surname":"Babakan","kimlikNo":"5155152151","birthDate":{"$date":"1995-03-02T22:00:00Z"},"addresses":["ozal caddesi","dermiel"],"_class":"buyer"}
+{"_id":{"$oid":"5ecc2e932b56017c24410b93"},"name":"Hakan","surname":"Çalhanoğlu","kimlikNo":"42342","birthDate":{"$date":"1988-09-08T21:00:00Z"},"addresses":["ss","ss"],"_class":"buyer"}
+{"_id":{"$oid":"5ecc2fe19e8dc540b83547b8"},"name":"Ahmet","surname":"Davutov","kimlikNo":"41234","birthDate":{"$date":"1987-09-08T21:00:00Z"},"addresses":["Özgür Caddesi 12/12 Çankaya, Ankara",""],"_class":"buyer"}
+{"_id":{"$oid":"5ecc336e8287924ab4031d62"},"name":"Halit","surname":"","kimlikNo":"1231","birthDate":{"$date":"1984-09-08T21:00:00Z"},"addresses":["",""],"_class":"buyer"}
+{"_id":{"$oid":"5ecc347a2a87d72c99af95b6"},"name":"Cem","surname":"Bas","kimlikNo":"123123","birthDate":{"$date":"1987-11-08T22:00:00Z"},"addresses":["asdf","asdfa"],"_class":"buyer"}
+{"_id":{"$oid":"5ecc34932a87d72c99af95b7"},"name":"Cem","surname":"","kimlikNo":"2345234","birthDate":{"$date":"1987-09-08T21:00:00Z"},"addresses":["d","d"],"_class":"buyer"}
+{"_id":{"$oid":"5ecc3a8cb148294dd8d09f4b"},"name":"Cem","surname":"","kimlikNo":"23423","birthDate":{"$date":"1987-09-08T21:00:00Z"},"addresses":["dasd","sd"],"_class":"buyer"}
+{"_id":{"$oid":"5ecc3adab148294dd8d09f4c"},"name":"","surname":"","kimlikNo":"","addresses":["",""],"_class":"buyer"}
+{"_id":{"$oid":"5ecc3aedb148294dd8d09f4d"},"name":"Cem","surname":"","kimlikNo":"51117799916","addresses":["",""],"_class":"buyer"}
+{"_id":{"$oid":"5ecc3b1eb148294dd8d09f4e"},"name":"sdfas","surname":"","kimlikNo":"51117799916","birthDate":{"$date":"1987-08-07T21:00:00Z"},"addresses":["",""],"_class":"buyer"}

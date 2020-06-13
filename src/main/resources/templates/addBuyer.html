@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Bizim Semt | Müşteriler</title>
+    <link href="../static/css/site.css" th:href="@{/css/site.css}" rel="stylesheet"/>
+    <link href="../static/css/album.css" th:href="@{/css/album.css}" rel="stylesheet"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container main-content">
+        <div class="row">
+            <div class="col-7">
+                <h3>Müşteri Ekle</h3>
+            </div>
+        </div>
+        <div class="form-group blu-margin">
+            <form action="#" th:action="@{/buyers/add}" th:object="${buyer}" method="post">
+                <div class="form-group row">
+                    <th:label for="name" class="col-sm-2 col-form-label">İsim</th:label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="name"
+                               autofocus="autofocus" th:field="*{name}" />
+                    </div>
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />
+                </div>
+                <div class="form-group row">
+                    <th:label for="surname" class="col-sm-2 col-form-label">Soyad</th:label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="surname"
+                               autofocus="autofocus" th:field="*{surname}"/>
+                    </div>
+                    <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" />
+                </div>
+                <div class="form-group row">
+                    <th:label for="kimlikNo" class="col-sm-2 col-form-label">Kimlik No</th:label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="kimlikNo"
+                               autofocus="autofocus" th:field="*{kimlikNo}"/>
+                    </div>
+                    <span th:if="${#fields.hasErrors('kimlikNo')}" th:errors="*{kimlikNo}" />
+                </div>
+                <div class="form-group row">
+                    <th:label for="gender" class="col-sm-2 col-form-label">Cinsiyet</th:label>
+                    <div class="col-sm-6">
+                        <select th:field="*{gender}">
+                            <option th:value="'M'" th:text="Erkek"></option>
+                            <option th:value="'F'" th:text="Kadın"></option>
+                        </select>
+                    </div>
+                    <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" />
+                </div>
+                <div class="form-group row">
+                    <th:label for="birthDate" class="col-sm-2 col-form-label">Doğum tarihi</th:label>
+                    <div class="col-sm-6">
+                        <div class="input-group date">
+                            <input type="date" class="form-control" autocomplete="off" th:field="*{birthDate}"/>
+                        </div>
+                    </div>
+                    <span th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}" />
+                </div>
+                <div class="form-group row">
+                    <th:label for="addresses" class="col-sm-2 col-form-label">Address</th:label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="address"
+                               autofocus="autofocus" th:field="*{addresses}"/>
+                    </div>
+                    <span th:if="${#fields.hasErrors('addresses')}" th:errors="*{addresses}" />
+                </div>
+                <input type="submit" value="Add!"/>
+                <input type="reset" value="Reset"/></p>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

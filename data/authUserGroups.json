@@ -1,0 +1,3 @@
+{"_id":{"$oid":"5eb5a2c61e20c75d8a478285"},"username":"cemobas","authGroup":"USER"}
+{"_id":{"$oid":"5eb5a2d51e20c75d8a47828a"},"username":"cemobas","authGroup":"ADMIN"}
+{"_id":{"$oid":"5eb5a2df1e20c75d8a47828d"},"username":"user","authGroup":"USER"}

@@ -6,6 +6,7 @@ import com.krakus.bizimsemt.config.BizimsemtProperties;
 import com.krakus.bizimsemt.config.SpringSecurityWebAuxTestConfig;
 import com.krakus.bizimsemt.controller.web.ClientWebController;
 import com.krakus.bizimsemt.domain.Buyer;
+import com.krakus.bizimsemt.domain.Gender;
 import com.krakus.bizimsemt.service.BuyerService;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
@@ -91,7 +92,7 @@ public class ClientWebControllerUnitTest {
     }
 
     private Buyer buyer() {
-        return new Buyer(ObjectId.get().toHexString(), "Dirk", "Kuyt", "9191919", birthDate(46), addresses());
+        return new Buyer(ObjectId.get().toHexString(), "Dirk", "Kuyt", "9191919", Gender.MALE, birthDate(46), addresses());
     }
 
 }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Bizim Semt | Müşteriler</title>
+    <link href="../static/css/site.css" th:href="@{/css/site.css}" rel="stylesheet"/>
+    <link href="../static/css/album.css" th:href="@{/css/album.css}" rel="stylesheet"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container main-content">
+        <div class="row">
+            <div class="col-7">
+                <span th:if="${buyer != null}">
+                    <h3>Müşteri eklendi!</h3>
+                </span>
+                <span th:if="${buyer == null}">
+                    <h3>Müşteri eklentisi başarısız</h3>
+                </span>
+            </div>
+                <div class="col">
+                    <a th:href="@{/buyers/add}">Müşteri ekle</a>
+                </div>
+        </div>
+        <span th:if="${buyer != null}">
+            <div class="form-group blu-margin">
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th>İsim</th>
+                    <td th:text="${buyer.name}"></td>
+                </tr>
+                <tr>
+                    <th>Soyad</th>
+                    <td th:text="${buyer.surname}"></td>
+                </tr>
+                <tr>
+                    <th>Kimlik No</th>
+                    <td th:text="${buyer.kimlikNo}"></td>
+                </tr>
+                <tr>
+                    <th>Doğum tarihi</th>
+                    <td th:text="${#temporals.format(buyer.birthDate, 'dd-MM-yyyy')}"></td>
+                </tr>
+                <tr th:each="address, status :${buyer.addresses}">
+                    <th th:text="${'Address ' + status.index}"></th>
+                    <td th:text="${address}"></td>
+                </tr>
+            </table>
+        </div>
+        </span>
+    </div>
+</div>
+</body>
+</html>

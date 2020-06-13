@@ -18,6 +18,7 @@ import java.util.Optional;
 
 import static com.krakus.bizimsemt.data.DataUtils.addresses;
 import static com.krakus.bizimsemt.data.DataUtils.birthDate;
+import static com.krakus.bizimsemt.domain.Gender.MALE;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -35,7 +36,7 @@ public class BuyerRepositoryIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        buyer = new Buyer(id.toString(), "Dirk", "Kuyt", "9191919", birthDate(46), addresses());
+        buyer = new Buyer(id.toString(), "Dirk", "Kuyt", "9191919", MALE, birthDate(46), addresses());
         mongoTemplate.save(buyer, "buyers");
     }
 

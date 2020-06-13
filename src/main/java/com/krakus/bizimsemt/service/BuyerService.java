@@ -1,9 +1,11 @@
 package com.krakus.bizimsemt.service;
 
+import com.krakus.bizimsemt.aspect.Loggable;
 import com.krakus.bizimsemt.domain.Buyer;
 import com.krakus.bizimsemt.repository.BuyerRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ public class BuyerService {
         return buyers;
     }
 
+    @Loggable
+    @Cacheable("buyers")
     public Optional<Buyer> find(String id){
         return buyerRepository.findById(new ObjectId(id));
     }

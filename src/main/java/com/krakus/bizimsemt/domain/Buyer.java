@@ -1,79 +1,42 @@
 package com.krakus.bizimsemt.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDateTime;
+import javax.validation.constraints.*;
+import java.time.LocalDate;
 import java.util.List;
 
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Document("buyers")
 @TypeAlias("buyer")
 public class Buyer {
 
     @Id
     private String id;
+    @NotEmpty(message = "{buyer.name.not.empty}")
     private String name;
+    @NotEmpty(message = "{buyer.surname.not.empty}")
     private String surname;
+
+    @Pattern(regexp = "^[1-9]{1}[0-9]{9}[02468]{1}$", message = "{buyer.kimlikNo.not.empty}")
     private String kimlikNo;
-    private LocalDateTime birthDate;
+
+    private Gender gender;
+
+    @Past(message = "Tarih girin")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate birthDate;
+
+    @NotEmpty(message = "{buyer.address.not.empty}")
     private List<String> addresses;
-
-    public Buyer(String id, String name, String surname, String kimlikNo, LocalDateTime birthDate, List<String> addresses) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.kimlikNo = kimlikNo;
-        this.birthDate = birthDate;
-        this.addresses = addresses;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getKimlikNo() {
-        return kimlikNo;
-    }
-
-    public void setKimlikNo(String kimlikNo) {
-        this.kimlikNo = kimlikNo;
-    }
-
-    public LocalDateTime getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDateTime birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public List<String> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<String> addresses) {
-        this.addresses = addresses;
-    }
 }

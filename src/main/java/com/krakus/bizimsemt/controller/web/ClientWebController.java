@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Controller
@@ -30,7 +31,6 @@ public class ClientWebController {
         this.buyerService.getAllBuyers().stream().forEach(buyer -> allClients.add(Client.create(buyer)));
         model.addAttribute("clients", allClients);
         model.addAttribute("selectedClient", allClients.get(0));
-        model.addAttribute("selectedClientId", allClients.get(0).getId());
         return "searchClient";
     }
 
@@ -41,7 +41,7 @@ public class ClientWebController {
         if(buyer.isPresent()) {
             model.addAttribute("client", Client.create(buyer.get()));
         } else {
-            return null;
+            throw new NoSuchElementException("client.not.found");
         }
         return "fetchClient";
     }

@@ -1,6 +1,5 @@
 package com.krakus.bizimsemt.controller.business;
 
-import com.krakus.bizimsemt.aspect.Loggable;
 import com.krakus.bizimsemt.model.Client;
 import com.krakus.bizimsemt.service.BuyerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ public class ClientApiController {
     @Autowired
     private ClientAssembler assembler;
 
-    @Loggable
     @GetMapping(path = "/{clientId}")
     public Client find(@PathVariable(value = "clientId") String id) {
         Client client = assembler.toModel(buyerService.find(id)

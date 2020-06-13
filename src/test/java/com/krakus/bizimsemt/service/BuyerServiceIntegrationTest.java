@@ -2,6 +2,7 @@ package com.krakus.bizimsemt.service;
 
 import com.krakus.bizimsemt.data.BizimTemplate;
 import com.krakus.bizimsemt.domain.Buyer;
+import com.krakus.bizimsemt.domain.Gender;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +18,7 @@ import java.util.Optional;
 
 import static com.krakus.bizimsemt.data.DataUtils.addresses;
 import static com.krakus.bizimsemt.data.DataUtils.birthDate;
+import static com.krakus.bizimsemt.domain.Gender.MALE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -47,7 +49,7 @@ public class BuyerServiceIntegrationTest {
     @Test
     public void testAddElvirBolic() {
         // Prepare new record
-        Buyer buyer = new Buyer(id.toString(), "Elvir", "Bolic", "1234567890", birthDate(40), addresses());
+        Buyer buyer = new Buyer(id.toString(), "Elvir", "Bolic", "1234567890", MALE, birthDate(40), addresses());
 
         // Add buyer
         Buyer newBuyer = buyerService.add(buyer);
@@ -63,7 +65,7 @@ public class BuyerServiceIntegrationTest {
     @Test
     public void testAddViorelMoldovan() {
         // Prepare new record
-        Buyer buyer = new Buyer(id.toString(), "Viorel", "Moldovan", "0987654321", birthDate(45), addresses());
+        Buyer buyer = new Buyer(id.toString(), "Viorel", "Moldovan", "0987654321", MALE, birthDate(45), addresses());
 
         // Add buyer
         Buyer newBuyer = buyerService.add(buyer);
