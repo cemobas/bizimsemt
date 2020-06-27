@@ -31,6 +31,7 @@ import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -67,7 +68,8 @@ public class ClientWebControllerUnitTest {
         mockMvc
                 .perform(post("/clients/fetch")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .param("id", buyer.getId()))
+                        .param("id", buyer.getId())
+                        .with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("client", hasProperty("id", is(buyer.getId()))))
                 .andExpect(model().attribute("client", hasProperty("name", is(buyer.getName()))))
@@ -86,7 +88,8 @@ public class ClientWebControllerUnitTest {
         when(buyerService.find(any(String.class))).thenReturn(Optional.of(buyer));
 
         mockMvc
-                .perform(post("/clients/fetch"))
+                .perform(post("/clients/fetch")
+                        .with(csrf()))
                 .andExpect(status().is(403))
                 .andReturn();
     }
