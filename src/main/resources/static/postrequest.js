@@ -17,9 +17,14 @@ $(document).ready(
 					unit : $("#unit").val()
 				}
 
+				var token =  $('input[name="_csrf"]').attr('value');
+
 				// DO POST
 				$.ajax({
 					type : "POST",
+                    headers: {
+                                  'X-CSRF-Token': token
+                             },
 					contentType : "application/json",
 					url : "items/save",
 					data : JSON.stringify(formData),
