@@ -10,8 +10,11 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.concurrent.TimeUnit;
@@ -51,6 +54,20 @@ public class BizimsemtConfig implements WebMvcConfigurer {
         messageSource.setCacheSeconds((int) TimeUnit.HOURS.toSeconds(1));
         messageSource.setFallbackToSystemLocale(false);
         return messageSource;
+    }
+
+    @Override
+    public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
+        // async is enabled by default with Spring Boot
+        configurer.setDefaultTimeout(5000);
+        configurer.setTaskExecutor(mvcTaskExecutor());
+    }
+
+    @Bean
+    public AsyncTaskExecutor mvcTaskExecutor() {
+        ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+        threadPoolTaskExecutor.setThreadNamePrefix("bizimsemt-thread-");
+        return threadPoolTaskExecutor;
     }
 
     //  https://www.baeldung.com/spring-data-mongodb-transactions

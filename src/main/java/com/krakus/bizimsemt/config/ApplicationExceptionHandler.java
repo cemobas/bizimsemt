@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.async.AsyncRequestTimeoutException;
 
 import java.util.Locale;
 import java.util.NoSuchElementException;
@@ -18,7 +19,7 @@ public class ApplicationExceptionHandler {
     private MessageSource validationMsgs;
 
     @Loggable
-    @ExceptionHandler(NoSuchElementException.class)
+    @ExceptionHandler({NoSuchElementException.class, AsyncRequestTimeoutException.class})
     public String handleException(NoSuchElementException e, Locale locale, Model model) {
         String errorMessage = validationMsgs.getMessage(
                 e.getMessage(), new Object[]{}, locale);
