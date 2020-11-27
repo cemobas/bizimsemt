@@ -22,6 +22,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.Optional;
 
@@ -32,6 +33,7 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -65,17 +67,21 @@ public class ClientWebControllerUnitTest {
         Buyer buyer = buyer();
         when(buyerService.find(any(String.class))).thenReturn(Optional.of(buyer));
 
-        mockMvc
+
+        MvcResult mvcResult = mockMvc
                 .perform(post("/clients/fetch")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("id", buyer.getId())
                         .with(csrf()))
+                .andReturn();
+
+        mockMvc
+                .perform(asyncDispatch(mvcResult))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("client", hasProperty("id", is(buyer.getId()))))
                 .andExpect(model().attribute("client", hasProperty("name", is(buyer.getName()))))
                 .andExpect(model().attribute("client", hasProperty("surname", is(buyer.getSurname()))))
-                .andExpect(model().attribute("client", hasProperty("addresses", is(buyer.getAddresses()))))
-                .andReturn();
+                .andExpect(model().attribute("client", hasProperty("addresses", is(buyer.getAddresses()))));
     }
 
     @DisplayName("given a football player " +
@@ -87,11 +93,14 @@ public class ClientWebControllerUnitTest {
         Buyer buyer = buyer();
         when(buyerService.find(any(String.class))).thenReturn(Optional.of(buyer));
 
-        mockMvc
+        MvcResult mvcResult = mockMvc
                 .perform(post("/clients/fetch")
                         .with(csrf()))
-                .andExpect(status().is(403))
                 .andReturn();
+
+        mockMvc
+                .perform(asyncDispatch(mvcResult))
+                .andExpect(status().is(403));
     }
 
     private Buyer buyer() {
