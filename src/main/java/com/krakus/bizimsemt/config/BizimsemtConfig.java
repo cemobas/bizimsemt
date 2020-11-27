@@ -5,6 +5,7 @@ import com.krakus.bizimsemt.converter.StringToEnumConverter;
 import com.krakus.bizimsemt.domain.Buyer;
 import com.krakus.bizimsemt.domain.Order;
 import com.krakus.bizimsemt.domain.Seller;
+import com.krakus.bizimsemt.interceptors.LoggingInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,7 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.concurrent.TimeUnit;
@@ -68,6 +70,11 @@ public class BizimsemtConfig implements WebMvcConfigurer {
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
         threadPoolTaskExecutor.setThreadNamePrefix("bizimsemt-thread-");
         return threadPoolTaskExecutor;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoggingInterceptor()).addPathPatterns("/*");
     }
 
     //  https://www.baeldung.com/spring-data-mongodb-transactions

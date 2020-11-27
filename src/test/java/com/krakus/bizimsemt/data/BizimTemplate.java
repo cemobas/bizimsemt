@@ -1,6 +1,5 @@
 package com.krakus.bizimsemt.data;
 
-import com.krakus.bizimsemt.aspect.LoggingAspect;
 import com.krakus.bizimsemt.function.FetchJSONFunction;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
@@ -8,7 +7,6 @@ import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;

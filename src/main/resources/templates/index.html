@@ -7,7 +7,7 @@
 
     <div layout:fragment="content">
         <div class="jumbotron main-content">
-            <h1>Bizim Semt'e hoşgeldiniz!</h1>
+            <h1>Bizim Semt'e hoşgeldin <span th:text="${#session.getAttribute('loggedInUser').getUsername()}"></span></h1>
             <p>Semtimizdeki bütün yerel dükkanları burada bulabilir, sipariş verebilir veya alışveriş listenizi bölgenizde duyurabilirziniz!</p>
         </div>
         <div class="container">
